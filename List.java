@@ -29,11 +29,10 @@ public class List {
 
     /** GIVE Adds a CharData object with the given character to the beginning of this list. */
     public void addFirst(char chr) {
-        CharData charD = new CharData (chr);
-        Node current = new Node(charD);
-        current.next = first;
-        first = current;
-        this.size++;
+        CharData newCharData = new CharData (chr);
+        Node newNode = new Node(newCharData, first);
+        this.first = newNode;
+        size++;
     }
     
     /** GIVE Textual representation of this list. */
