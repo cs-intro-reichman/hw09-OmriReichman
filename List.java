@@ -46,8 +46,7 @@ public class List {
             str = str + current.toString() + " ";
             current = current.next;
         }
-        str = str.substring(0,str.length()-1) + ")";
-        return str;
+        return str.substring(0,str.length()-1) + ")";
     }
 
     /** Returns the index of the first CharData object in this list
@@ -94,7 +93,8 @@ public class List {
         }
         if(current == null) {
             return false;
-        } else if (prev == null) {
+        }
+        if (prev == null) {
             first = first.next;
         } else {
             prev.next = current.next;
@@ -107,14 +107,17 @@ public class List {
      *  If the index is negative or is greater than the size of this list, 
      *  throws an IndexOutOfBoundsException. */
     public CharData get(int index) {
-        if (index >= size) {
+        if ((index < 0) || (index > size - 1) ) {
             throw new IndexOutOfBoundsException();
+        } else {
+            Node current = first;
+            int i = 0;
+            while (i < index) {
+                current = current.next;
+                i++;
+            }
+            return current.cp;
         }
-        Node current = first;
-        for (int i = 0; i < index; i++) {
-            current = current.next;
-        }
-        return current.cp;
     }
 
     /** Returns an array of CharData objects, containing all the CharData objects in this list. */
